@@ -1,7 +1,7 @@
 # Проект «Большое путешествие» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ольга Савон](https://up.htmlacademy.ru/ecmascript/13/user/124799).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Рожков](https://htmlacademy.ru/intensive/javascript).
 
 ---
 
