@@ -23,9 +23,9 @@ render(info, createRouteInfoTemplate());
 render(info, createRouteCostTemplate());
 
 const controls = container.querySelector(`.trip-controls`);
-const menuHeader = controls.querySelector(`h2:first-child`);
+const menuHeader = controls.querySelector(`h2`);
 
-render(menuHeader, createMenuTemplate());
+render(menuHeader, createMenuTemplate(), `afterend`);
 render(controls, createFilterTemplate());
 
 const events = document.querySelector(`.trip-events`);
