@@ -11,24 +11,23 @@ import {createItemTemplate} from "./view/item";
 
 const ITEMS_COUNT = 3;
 
+const main = document.querySelector(`.trip-main`);
+const events = document.querySelector(`.trip-events`);
+
 const render = (container, template, position = `beforeend`) =>
   container.insertAdjacentHTML(position, template);
 
-const container = document.querySelector(`.trip-main`);
+render(main, createInfoTemplate(), `afterbegin`);
 
-render(container, createInfoTemplate(), `afterbegin`);
-
-const info = container.querySelector(`.trip-info`);
+const info = main.querySelector(`.trip-info`);
 render(info, createRouteInfoTemplate());
 render(info, createRouteCostTemplate());
 
-const controls = container.querySelector(`.trip-controls`);
+const controls = main.querySelector(`.trip-controls`);
 const menuHeader = controls.querySelector(`h2`);
 
 render(menuHeader, createMenuTemplate(), `afterend`);
 render(controls, createFilterTemplate());
-
-const events = document.querySelector(`.trip-events`);
 
 render(events, createSortTemplate());
 render(events, createRouteListTemplate());
