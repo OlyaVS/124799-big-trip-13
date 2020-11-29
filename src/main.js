@@ -1,45 +1,48 @@
+import {createTripInfoTemplate} from "./view/trip-info";
 import {createInfoTemplate} from "./view/info";
-import {createRouteInfoTemplate} from "./view/route-info";
-import {createRouteCostTemplate} from "./view/route-cost";
+import {createCostTemplate} from "./view/cost";
 import {createMenuTemplate} from "./view/menu";
 import {createFilterTemplate} from "./view/filter";
 import {createSortTemplate} from "./view/sort";
-import {createRouteListTemplate} from "./view/route-list";
-import {createRouteItemTemplate} from "./view/route-item";
-import {createAddRouteItemTemplate} from "./view/add-route-item";
-import {createItemTemplate} from "./view/item";
+import {createPointListTemplate} from "./view/point-list";
+import {createPointListItemTemplate} from "./view/point-list-item";
+import {createPointFormTemplate} from "./view/point-form";
+import {createPointTemplate} from "./view/point";
 
-const ITEMS_COUNT = 3;
+const ITEMS_COUNT = 4;
 
-const main = document.querySelector(`.trip-main`);
-const events = document.querySelector(`.trip-events`);
+const mainElement = document.querySelector(`.trip-main`);
+const eventsElement = document.querySelector(`.trip-events`);
 
 const render = (container, template, position = `beforeend`) =>
   container.insertAdjacentHTML(position, template);
 
-render(main, createInfoTemplate(), `afterbegin`);
+render(mainElement, createTripInfoTemplate(), `afterbegin`);
 
-const info = main.querySelector(`.trip-info`);
-render(info, createRouteInfoTemplate());
-render(info, createRouteCostTemplate());
+const infoElement = mainElement.querySelector(`.trip-info`);
+render(infoElement, createInfoTemplate());
+render(infoElement, createCostTemplate());
 
-const controls = main.querySelector(`.trip-controls`);
-const menuHeader = controls.querySelector(`h2`);
+const controlsElement = mainElement.querySelector(`.trip-controls`);
+const menuHeaderElement = controlsElement.querySelector(`h2`);
 
-render(menuHeader, createMenuTemplate(), `afterend`);
-render(controls, createFilterTemplate());
+render(menuHeaderElement, createMenuTemplate(), `afterend`);
+render(controlsElement, createFilterTemplate());
 
-render(events, createSortTemplate());
-render(events, createRouteListTemplate());
+render(eventsElement, createSortTemplate());
+render(eventsElement, createPointListTemplate());
 
-const list = events.querySelector(`.trip-events__list`);
-render(list, createRouteItemTemplate());
-
-const item = list.querySelector(`.trip-events__item`);
-render(item, createAddRouteItemTemplate());
+const listElement = eventsElement.querySelector(`.trip-events__list`);
 
 for (let i = 0; i < ITEMS_COUNT; i++) {
-  render(list, createRouteItemTemplate());
-  const lastItem = list.querySelector(`.trip-events__item:last-child`);
-  render(lastItem, createItemTemplate());
+  render(listElement, createPointListItemTemplate());
 }
+
+const liElements = listElement.querySelectorAll(`li`);
+liElements.forEach((li, index) => {
+  if (index === 0) {
+    render(li, createPointFormTemplate());
+  } else {
+    render(li, createPointTemplate());
+  }
+});
