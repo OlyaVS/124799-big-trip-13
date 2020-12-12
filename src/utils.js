@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import {OFFERS} from "./constants";
 
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -13,8 +14,8 @@ export const generateRandomData = (data) => {
   return data[randomIndex];
 };
 
-export const getOffers = (offers, type) => {
-  const currentOffers = offers.filter((x) => x.eventType === type);
+export const getOffers = (type) => {
+  const currentOffers = OFFERS.filter((x) => x.eventType === type);
   const randomLength = currentOffers.length > 1 ? getRandomInteger(0, currentOffers.length - 1) : 1;
   return currentOffers.slice(0, randomLength);
 };

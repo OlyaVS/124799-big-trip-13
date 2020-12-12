@@ -3,7 +3,7 @@ import {getTimeDuration} from "../utils";
 
 export const createEventTemplate = (event) => {
   const {date, type, destination, startTime, endTime, price, offers, isFavourite} = event;
-  const imageUrl = `img/icons/${type.toLowerCase()}.png`;
+  const iconUrl = `img/icons/${type.toLowerCase()}.png`;
   const formattedDateTimeDate = dayjs(startTime).format(`YYYY-MM-DD`);
   const formattedDate = dayjs(date).format(`MMM DD`);
   const formattedDateTimeStart = dayjs(startTime).format();
@@ -15,7 +15,7 @@ export const createEventTemplate = (event) => {
   return (`<div class="event">
   <time class="event__date" datetime="${formattedDateTimeDate}">${formattedDate}</time>
   <div class="event__type">
-    <img class="event__type-icon" width="42" height="42" src=${imageUrl} alt="Event type icon">
+    <img class="event__type-icon" width="42" height="42" src=${iconUrl} alt="Event type icon">
   </div>
   <h3 class="event__title">${type} ${destination}</h3>
   <div class="event__schedule">

@@ -43,7 +43,7 @@ for (let i = 0; i < EVENTS_COUNT; i++) {
 const liElements = listElement.querySelectorAll(`li`);
 liElements.forEach((li, index) => {
   if (index === 0) {
-    render(li, createEventFormTemplate());
+    render(li, createEventFormTemplate(events[index]));
   } else {
     render(li, createEventTemplate(events[index]));
   }

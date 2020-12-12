@@ -1,64 +1,6 @@
-import {EVENT_TYPES} from "../constants";
+import {DESTINATIONS, EVENT_TYPES} from "../constants";
 import {generateRandomData, getRandomDescription, getOffers, getRandomPhotos, getRandomInteger, getRandomDate, getRandomTimeInterval} from "../utils";
 
-const destinations = [`Amsterdam`, `Chamonix`, `Geneva`];
-const offers = [
-  {
-    eventType: `Flight`,
-    title: `Add luggage`,
-    price: 30
-  },
-  {
-    eventType: `Flight`,
-    title: `Switch to comfort class`,
-    price: 100
-  },
-  {
-    eventType: `Flight`,
-    title: `Add meal`,
-    price: 15
-  },
-  {
-    eventType: `Flight`,
-    title: `Add luggage`,
-    price: 50
-  },
-  {
-    eventType: `Flight`,
-    title: `Choose seats`,
-    price: 5
-  },
-  {
-    eventType: `Transport`,
-    title: `Travel by train`,
-    price: 40
-  },
-  {
-    eventType: `Drive`,
-    title: `Rent a car`,
-    price: 200
-  },
-  {
-    eventType: `CheckIn`,
-    title: `Add breakfast`,
-    price: 50
-  },
-  {
-    eventType: `Sightseeing`,
-    title: `Book tickets`,
-    price: 40
-  },
-  {
-    eventType: `Sightseeing`,
-    title: `Lunch in city`,
-    price: 30
-  },
-  {
-    eventType: `Taxi`,
-    title: `Order Uber`,
-    price: 20
-  }
-];
 const rawDescription = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Cras aliquet varius magna, non porta ligula feugiat eget.
 Fusce tristique felis at fermentum pharetra.
@@ -74,10 +16,10 @@ const photoBaseUrl = `http://picsum.photos/248/152?r=`;
 export const generateEvent = () => {
   const date = getRandomDate();
   const type = generateRandomData(EVENT_TYPES);
-  const destination = generateRandomData(destinations);
+  const destination = generateRandomData(DESTINATIONS);
   const {startTime, endTime} = getRandomTimeInterval(date);
   const price = getRandomInteger(50, 800);
-  const currentOffers = getOffers(offers, type);
+  const currentOffers = getOffers(type);
   const description = getRandomDescription(rawDescription);
   const photos = getRandomPhotos(photoBaseUrl);
   return {
