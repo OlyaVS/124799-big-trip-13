@@ -4,12 +4,14 @@ import {createCostTemplate} from "./view/cost";
 import {createMenuTemplate} from "./view/menu";
 import {createFilterTemplate} from "./view/filter";
 import {createSortTemplate} from "./view/sort";
-import {createPointListTemplate} from "./view/point-list";
-import {createPointListItemTemplate} from "./view/point-list-item";
-import {createPointFormTemplate} from "./view/point-form";
-import {createPointTemplate} from "./view/point";
+import {createEventsListTemplate} from "./view/events-list";
+import {createEventsListItemTemplate} from "./view/events-list-item";
+import {createEventFormTemplate} from "./view/event-form";
+import {createEventTemplate} from "./view/event";
+import {generateEvent} from "./mock/event";
 
-const ITEMS_COUNT = 4;
+const EVENTS_COUNT = 20;
+const events = new Array(EVENTS_COUNT).fill(null).map(generateEvent);
 
 const mainElement = document.querySelector(`.trip-main`);
 const eventsElement = document.querySelector(`.trip-events`);
@@ -30,19 +32,19 @@ render(menuHeaderElement, createMenuTemplate(), `afterend`);
 render(controlsElement, createFilterTemplate());
 
 render(eventsElement, createSortTemplate());
-render(eventsElement, createPointListTemplate());
+render(eventsElement, createEventsListTemplate());
 
 const listElement = eventsElement.querySelector(`.trip-events__list`);
 
-for (let i = 0; i < ITEMS_COUNT; i++) {
-  render(listElement, createPointListItemTemplate());
+for (let i = 0; i < EVENTS_COUNT; i++) {
+  render(listElement, createEventsListItemTemplate());
 }
 
 const liElements = listElement.querySelectorAll(`li`);
 liElements.forEach((li, index) => {
   if (index === 0) {
-    render(li, createPointFormTemplate());
+    render(li, createEventFormTemplate());
   } else {
-    render(li, createPointTemplate());
+    render(li, createEventTemplate(events[index]));
   }
 });
