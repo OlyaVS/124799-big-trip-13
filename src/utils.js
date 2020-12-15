@@ -69,3 +69,8 @@ export const getTimeDuration = (startTime, endTime) => {
 
   return days > 0 ? `${days}D ${hours}H ${minutes}M` : `${hours}H ${minutes}M`;
 };
+
+export const countTotalPrice = (price, offers) => {
+  const offersPrices = offers.map((x) => x.price);
+  return offers.length ? price + offersPrices.reduce((x, acc) => x + acc, 0) : price;
+};

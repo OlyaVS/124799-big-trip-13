@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import {getTimeDuration} from "../utils";
+import {countTotalPrice, getTimeDuration} from "../utils";
 
 export const createEventTemplate = (event) => {
   const {date, type, destination, startTime, endTime, price, offers, isFavourite} = event;
@@ -11,6 +11,7 @@ export const createEventTemplate = (event) => {
   const formattedDateTimeEnd = dayjs(endTime).format();
   const formattedEndTime = dayjs(endTime).format(`HH:mm`);
   const favouriteClass = isFavourite ? `event__favorite-btn--active` : ``;
+  const totalPrice = countTotalPrice(price, offers);
 
   return (`<div class="event">
   <time class="event__date" datetime="${formattedDateTimeDate}">${formattedDate}</time>
@@ -27,7 +28,7 @@ export const createEventTemplate = (event) => {
     <p class="event__duration">${getTimeDuration(startTime, endTime)}</p>
   </div>
   <p class="event__price">
-    &euro;&nbsp;<span class="event__price-value">${price}</span>
+    &euro;&nbsp;<span class="event__price-value">${totalPrice}</span>
   </p>
   <h4 class="visually-hidden">Offers:</h4>
   <ul class="event__selected-offers">

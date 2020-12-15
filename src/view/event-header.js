@@ -1,11 +1,13 @@
 import dayjs from "dayjs";
 import {DESTINATIONS, EVENT_TYPES} from "../constants";
+import {countTotalPrice} from "../utils";
 
 export const createEventHeaderTemplate = (event) => {
-  const {type, destination, startTime, endTime, price} = event;
+  const {type, destination, startTime, endTime, price, offers} = event;
   const iconUrl = `img/icons/${type.toLowerCase()}.png`;
   const formattedStartTime = dayjs(startTime).format(`YY/MM/DD HH:mm`);
   const formattedEndTime = dayjs(endTime).format(`YY/MM/DD HH:mm`);
+  const totalPrice = countTotalPrice(price, offers);
 
   return (`<header class="event__header">
     <div class="event__type-wrapper">
@@ -53,7 +55,7 @@ export const createEventHeaderTemplate = (event) => {
         <span class="visually-hidden">Price</span>
         &euro;
       </label>
-      <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${price}">
+      <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${totalPrice}">
     </div>
 
     <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
